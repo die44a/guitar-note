@@ -44,18 +44,24 @@
 
                 <!-- Minimize -->
                 <Button Grid.Column="0"
+                        Name="MinimizeButton"
                         Classes="TitleBarButton"
-                        Content="—"/>
+                        Content="—"
+                        Click="TitleButton_Click"/>
 
                 <!-- Maximize -->
                 <Button Grid.Column="1"
+                        Name="ResizeButton"
                         Classes="TitleBarButton"
-                        Content="□"/>
+                        Content="□"
+                        Click="TitleButton_Click"/>
 
                 <!-- Close -->
                 <Button Grid.Column="2"
+                        Name="CloseButton"
                         Classes="TitleBarCloseButton"
-                        Content="×"/>
+                        Content="×"
+                        Click="TitleButton_Click"/>
             </Grid>
         </Grid>
     </Border>
