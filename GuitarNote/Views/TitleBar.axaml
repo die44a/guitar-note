@@ -1,0 +1,63 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModels="clr-namespace:GuitarNote.ViewModels"
+             x:Class="GuitarNote.Views.TitleBar"
+             Height="40">
+    
+        <UserControl.Styles>
+            <Styles>
+                <StyleInclude Source="avares://GuitarNote/Assets/Styles/TitleBarStyles.axaml"/>
+            </Styles>
+        </UserControl.Styles>
+
+    
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <viewModels:TitleBarViewModel/>
+    </Design.DataContext>
+    
+    <Border Background="#2B2B2B">
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <!-- Иконка слева -->
+                <ColumnDefinition Width="Auto"/>
+                <!-- Заголовок/центр -->
+                <ColumnDefinition Width="*"/>
+                <!-- Кнопки управления окна (три равные колонки) -->
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Иконка слева -->
+            <Image Grid.Column="0" Source="avares://GuitarNote/Assets/Icons/avalonia-logo.ico"
+                   Width="32" Height="32" Margin="5,0"/>
+            
+            <!-- Кнопки справа -->
+            <Grid Grid.Column="2"
+                  HorizontalAlignment="Right"
+                  Height="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="45"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Minimize -->
+                <Button Grid.Column="0"
+                        Classes="TitleBarButton"
+                        Content="—"/>
+
+                <!-- Maximize -->
+                <Button Grid.Column="1"
+                        Classes="TitleBarButton"
+                        Content="□"/>
+
+                <!-- Close -->
+                <Button Grid.Column="2"
+                        Classes="TitleBarCloseButton"
+                        Content="×"/>
+            </Grid>
+        </Grid>
+    </Border>
+    
+</UserControl>
