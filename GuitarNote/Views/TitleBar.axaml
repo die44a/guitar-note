@@ -20,19 +20,19 @@
     <Border Background="#2B2B2B">
         <Grid VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
-                <!-- Иконка слева -->
+                <!-- Icon -->
                 <ColumnDefinition Width="Auto"/>
-                <!-- Заголовок/центр -->
+                <!-- Center -->
                 <ColumnDefinition Width="*"/>
-                <!-- Кнопки управления окна (три равные колонки) -->
+                <!-- Right buttons -->
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Иконка слева -->
+            <!-- Icon -->
             <Image Grid.Column="0" Source="avares://GuitarNote/Assets/Icons/avalonia-logo.ico"
                    Width="32" Height="32" Margin="5,0"/>
             
-            <!-- Кнопки справа -->
+            <!-- Right buttons -->
             <Grid Grid.Column="2"
                   HorizontalAlignment="Right"
                   Height="40">

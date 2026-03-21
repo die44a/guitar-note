@@ -1,3 +1,4 @@
+using System;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
@@ -17,6 +18,8 @@ public partial class TitleBar : UserControl
         if (DataContext is TitleBarViewModel vm && sender is Button button)
         {
             var window = this.GetVisualRoot() as Window;
+            if (window == null)
+                throw new ArgumentNullException("Window was not found in parent window");
 
             switch (button.Name)
             {
