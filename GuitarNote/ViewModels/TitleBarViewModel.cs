@@ -19,6 +19,6 @@ public class TitleBarViewModel : ViewModelBase
     // TODO: implement this better
     public void OnResizeButtonClicked(Window window)
     {
-        window.WindowState = WindowState.Normal;
+        window.WindowState = WindowState.Maximized;
     }
 }   

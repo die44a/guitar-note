@@ -1,5 +1,6 @@
 using System;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
 using GuitarNote.ViewModels;
@@ -11,8 +12,18 @@ public partial class TitleBar : UserControl
     public TitleBar()
     {
         InitializeComponent();
+        PointerPressed += TitleBar_PointerPressed;
     }
 
+    private void TitleBar_PointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
+        {
+            var window = this.GetVisualRoot() as Window;
+            window?.BeginMoveDrag(e);
+        }
+    }
+    
     private void TitleButton_Click(object? sender, RoutedEventArgs e)
     {
         if (DataContext is TitleBarViewModel vm && sender is Button button)
