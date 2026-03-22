@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace GuitarNote.Views;
 
-public partial class SongListField : UserControl
+public partial class SongListFieldView : UserControl
 {
-    public SongListField()
+    public SongListFieldView()
     {
         InitializeComponent();
     }

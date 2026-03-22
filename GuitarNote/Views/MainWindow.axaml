@@ -47,7 +47,8 @@
             </Grid.ColumnDefinitions>
 
             <!-- Left panel -->
-            <local:ControlPanel Grid.Column="0"/>
+            <local:ControlPanelView Name="ControlPanelView" 
+                                Grid.Column="0"/>
 
             <!-- Splitter -->
             <GridSplitter Grid.Column="1"
@@ -59,7 +60,8 @@
                           HorizontalAlignment="Stretch"/>
 
             <!-- Right side -->
-            <local:TextField Grid.Column="2" />
+            <ContentControl Grid.Column="2"
+                            Content="{Binding CurrentView}"/>
             
         </Grid>
     </Grid>

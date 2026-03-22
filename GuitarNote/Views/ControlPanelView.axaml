@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             x:Class="GuitarNote.Views.ControlPanel"
+             x:Class="GuitarNote.Views.ControlPanelView"
              VerticalAlignment="Stretch"
              HorizontalAlignment="Stretch"
              MinWidth="80">
@@ -19,21 +19,18 @@
             <!-- Menu buttons -->
             <StackPanel Grid.Row="1" Spacing="10" Margin="10,10">
                 <Button Name="CatalogButton" 
-                        Click="ControlPanelButton_Click"
                         Height="40" 
                         HorizontalAlignment="Stretch" 
                         Background="#333333" 
                         CornerRadius="6"/>
                 
-                <Button Name="ContructorButton"
-                        Click="ControlPanelButton_Click"
+                <Button Name="ConstructorButton"
                         Height="40" 
                         HorizontalAlignment="Stretch" 
                         Background="#333333" 
                         CornerRadius="6"></Button>
                 
                 <Button Name="TunerButton"
-                        Click="ControlPanelButton_Click"
                         Height="40" HorizontalAlignment="Stretch" 
                         Background="#333333" 
                         CornerRadius="6"></Button>
@@ -42,7 +39,6 @@
             <!-- Lower block -->
             <Button Grid.Row="2"
                     Name="SettingsButton"
-                    Click="ControlPanelButton_Click"
                     Height="40"
                     Width="40"
                     Margin="10"

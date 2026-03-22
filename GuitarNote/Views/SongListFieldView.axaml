@@ -1,6 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="GuitarNote.Views.SongListField"
+             x:Class="GuitarNote.Views.SongListFieldView"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch">
 
