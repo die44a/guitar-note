@@ -18,29 +18,33 @@
                     
             <!-- Menu buttons -->
             <StackPanel Grid.Row="1" Spacing="10" Margin="10,10">
-                <Button Height="40" 
+                <Button Name="CatalogButton" 
+                        Height="40" 
                         HorizontalAlignment="Stretch" 
                         Background="#333333" 
                         CornerRadius="6"/>
                 
-                <Button Height="40" 
+                <Button Name="ContructorButton"
+                        Height="40" 
                         HorizontalAlignment="Stretch" 
                         Background="#333333" 
                         CornerRadius="6"></Button>
                 
-                <Button Height="40" HorizontalAlignment="Stretch" 
+                <Button Name="TunerButton"
+                        Height="40" HorizontalAlignment="Stretch" 
                         Background="#333333" 
                         CornerRadius="6"></Button>
             </StackPanel>
 
             <!-- Lower block -->
             <Button Grid.Row="2"
-                Height="40"
-                Width="40"
-                Margin="10"
-                Background="#333333"
-                CornerRadius="6"
-                HorizontalAlignment="Left"/>
+                    Name="SettingsButton"
+                    Height="40"
+                    Width="40"
+                    Margin="10"
+                    Background="#333333"
+                    CornerRadius="6"
+                    HorizontalAlignment="Left"/>
         </Grid>
     </Border>
     
