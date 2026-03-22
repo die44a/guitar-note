@@ -1,6 +1,4 @@
-using NUnit.Framework;
-using GuitarNote.Services;
-using System.Collections.Generic;
+using GuitarNote.Models;
 
 namespace GuitarNoteTests.ServiceTests;
 
