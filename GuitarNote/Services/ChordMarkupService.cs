@@ -22,22 +22,13 @@ public class ChordLine
     {
         var sb = new StringBuilder();
         var chords = new List<(int, string)>();
-        int index = 0;
+        var index = 0;
 
         while (index < input.Length)
         {
             if (input[index] == '[')
             {
-                int end = input.IndexOf(']', index);
-                if (end == -1)
-                    throw new InvalidChordLineException("Missing closing bracket for chord.");
-                
-                var chord = input.Substring(index + 1, end - index - 1).Trim();
-                if (string.IsNullOrEmpty(chord))
-                    throw new InvalidChordLineException("Chord cannot be empty.");
-                
-                index = end + 1;
-                
+                (index, var chord) = ExtractChord(input, index);
                 chords.Add((sb.Length, chord));
                 continue;
             }
@@ -50,6 +41,18 @@ public class ChordLine
         }
 
         return (sb.ToString(), chords); 
+    }
+
+    private (int index, string chord) ExtractChord(string input, int startIndex)
+    {
+        var end = input.IndexOf(']', startIndex);
+        if (end == -1)
+            throw new InvalidChordLineException("Missing closing bracket for chord.");
+                
+        var chord = input.Substring(startIndex + 1, end - startIndex - 1).Trim();
+        return string.IsNullOrEmpty(chord) 
+            ? throw new InvalidChordLineException("Chord cannot be empty.") 
+            : (end + 1, chord);
     }
 }
 
