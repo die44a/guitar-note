@@ -19,6 +19,12 @@
         MinWidth="600"
         MinHeight="450"
         WindowStartupLocation="CenterScreen">
+    
+    <Window.Styles>
+        <Styles>
+            <StyleInclude Source="avares://GuitarNote/Assets/Styles/MainWindowStyles.axaml"/>
+        </Styles>
+    </Window.Styles>
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
