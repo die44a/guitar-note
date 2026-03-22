@@ -10,56 +10,43 @@ namespace GuitarNote.Views;
 
 public partial class TitleBar : UserControl
 {
-    private Window? _window;
+    public event Action? MinimizeRequested;
+    public event Action? ResizeRequested;
+    public event Action? CloseRequested;
+
+    private void TitleButton_Click(object? sender, RoutedEventArgs e)
+    {
+        if (sender is not Button button) 
+            return;
+        
+        switch (button.Name)
+        {
+            case "MinimizeButton":
+                MinimizeRequested?.Invoke();
+                break;
+            case "ResizeButton":
+                ResizeRequested?.Invoke();
+                break;
+            case "CloseButton":
+                CloseRequested?.Invoke();
+                break;
+        }
+    }
     
     public TitleBar()
     {
         InitializeComponent();
+        
         PointerPressed += TitleBar_PointerPressed;
         DoubleTapped += TitleBar_DoubleClick;
-        
-        AttachedToVisualTree += (s, e) =>
-        {
-            _window = this.GetVisualRoot() as Window;
-            if (_window == null)
-                throw new ArgumentNullException("Window was not found in visual tree");
-        };
     }
 
     private void TitleBar_PointerPressed(object? sender, PointerPressedEventArgs e)
     {
         if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
-            _window!.BeginMoveDrag(e);
+            (this.GetVisualRoot() as Window)?.BeginMoveDrag(e);
     }
 
     private void TitleBar_DoubleClick(object? sender, TappedEventArgs e)
-        => ResizeWindow();
-    
-    private void TitleButton_Click(object? sender, RoutedEventArgs e)
-    {
-        if (DataContext is TitleBarViewModel vm && sender is Button button)
-        {
-            switch (button.Name)
-            {
-                case "CloseButton":
-                    _window!.Close();
-                    break;
-                case "ResizeButton":
-                    ResizeWindow();  
-                    break;
-                case "MinimizeButton":
-                    MinimizeWindow();
-                    break;
-            }
-        }
-    }
-
-    private void MinimizeWindow()
-        =>_window!.WindowState = WindowState.Minimized;
-
-
-    private void ResizeWindow()
-        => _window!.WindowState = _window!.WindowState == WindowState.Maximized 
-            ? WindowState.Normal 
-            : WindowState.Maximized;
+        => ResizeRequested?.Invoke();
 }
