@@ -6,7 +6,7 @@
 
     <UserControl.Styles>
         <Styles>
-            <StyleInclude Source="avares://GuitarNote/Assets/Styles/TunerSyles.axaml"/>
+            <StyleInclude Source="avares://GuitarNote/Assets/Styles/TunerFieldSyles.axaml"/>
         </Styles>
     </UserControl.Styles>
     
