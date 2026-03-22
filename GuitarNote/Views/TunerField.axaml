@@ -1,0 +1,94 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="GuitarNote.Views.TunerField"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+
+    <UserControl.Styles>
+        <Styles>
+            <StyleInclude Source="avares://GuitarNote/Assets/Styles/TunerSyles.axaml"/>
+        </Styles>
+    </UserControl.Styles>
+    
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="10"
+          Margin="20">
+
+        <!-- Header -->
+        <Border Background="#1E1E1E"
+                CornerRadius="6"
+                Padding="10">
+            <TextBlock Text="Тюнер"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="#CCCCCC"
+                       FontSize="16"/>
+        </Border>
+
+        <!-- Main block -->
+        <Border Grid.Row="1"
+                Background="#1A1A1A"
+                CornerRadius="6"
+                BorderBrush="#333333"
+                BorderThickness="1"
+                Padding="20">
+
+            <Grid RowDefinitions="*,Auto"
+                  RowSpacing="20">
+
+                <!-- Scale -->
+                <Grid Grid.Row="0"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch">
+
+                    <!-- Center -->
+                    <Viewbox Stretch="Uniform"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             MaxWidth="400"
+                             MaxHeight="250">
+
+                        <Grid Width="300" Height="200">
+
+                            <!-- Arc -->
+                            <Path Stroke="#444"
+                                  StrokeThickness="6"
+                                  Data="M 20 180 A 130 130 0 0 1 280 180"/>
+
+                            <!-- Center mark -->
+                            <Rectangle Width="4"
+                                       Height="25"
+                                       Fill="#FFFFFF"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Margin="0,20,0,0"/>
+
+                            <!-- Indicator -->
+                            <Rectangle Width="4"
+                                       Height="70"
+                                       Fill="#4CAF50"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Margin="0,40,0,0"/>
+                        </Grid>
+                    </Viewbox>
+                </Grid>
+
+                <!-- Info -->
+                <StackPanel Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            Spacing="5">
+
+                    <TextBlock Text="A4"
+                               FontSize="24"
+                               Foreground="White"/>
+
+                    <TextBlock Text="440 Hz"
+                               FontSize="14"
+                               Foreground="#888"/>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
