@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Class="GuitarNote.Views.ControlPanel"
+             VerticalAlignment="Stretch"
+             HorizontalAlignment="Stretch"
+             MinWidth="80">
+    
+    <UserControl.Styles>
+        <Styles>
+            <StyleInclude Source="avares://GuitarNote/Assets/Styles/ControlPanelStyles.axaml"/>
+        </Styles>
+    </UserControl.Styles>
+    
+    <Border Background="#1E1E1E">
+        <Grid RowDefinitions="Auto,*,Auto">
+                    
+            <!-- Menu buttons -->
+            <StackPanel Grid.Row="1" Spacing="10" Margin="10,10">
+                <Button Height="40" 
+                        HorizontalAlignment="Stretch" 
+                        Background="#333333" 
+                        CornerRadius="6"/>
+                
+                <Button Height="40" 
+                        HorizontalAlignment="Stretch" 
+                        Background="#333333" 
+                        CornerRadius="6"></Button>
+                
+                <Button Height="40" HorizontalAlignment="Stretch" 
+                        Background="#333333" 
+                        CornerRadius="6"></Button>
+            </StackPanel>
+
+            <!-- Lower block -->
+            <Button Grid.Row="2"
+                Height="40"
+                Width="40"
+                Margin="10"
+                Background="#333333"
+                CornerRadius="6"
+                HorizontalAlignment="Left"/>
+        </Grid>
+    </Border>
+    
+    
+</UserControl>
