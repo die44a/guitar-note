@@ -17,8 +17,7 @@ public class Chord
         Intervals = GetIntervals(type);
         SlashBass = slashBass;
     }
-
-
+    
     public Chord Transpose(int semitones)
     {
         var newRoot = Note.Transpose(semitones);
