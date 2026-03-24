@@ -47,7 +47,7 @@ public class Chord
         "11" or "dom11" => [0, 4, 7, 10, 14, 17],
         "13" or  "dom13" => [0, 4, 7, 10, 14, 18],
         "aug" or "+" => [0, 4, 8],
-        "aug7" or "+7" => [0, 4, 8, 10],
+        "aug7" or "+7" => [0, 4, 8, 11],
         _ => throw new ArgumentOutOfRangeException(nameof(type), "was not found in type base")
     };
 }
