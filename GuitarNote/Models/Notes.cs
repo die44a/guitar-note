@@ -34,5 +34,6 @@ public enum Note
     ASharp = 10, 
     Bb = 10,         
     B = 11, 
+    H = 11,
     Cb = 11         
 }
