@@ -10,7 +10,7 @@ public class Chord
     public string Type { get; private set; }
     public int[] Intervals { get; private set; }
 
-    public Chord(Note note, string type, Note? slashBass = null)
+    public Chord(Note note, string type, Note? slashBass = Note.None)
     {
         Note = note;
         Type = type;
@@ -47,6 +47,6 @@ public class Chord
         "13" or  "dom13" => [0, 4, 7, 10, 14, 18],
         "aug" or "+" => [0, 4, 8],
         "aug7" or "+7" => [0, 4, 8, 11],
-        _ => throw new ArgumentOutOfRangeException(nameof(type), "was not found in type base")
+        _ => []
     };
 }
