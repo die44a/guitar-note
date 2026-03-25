@@ -28,7 +28,7 @@ public class Chord
     public Note[] GetNotes()
         => Intervals.Select(i => Note.Transpose(i)).ToArray();
     
-    private int[] GetIntervals(string type) => type switch
+    private static int[] GetIntervals(string type) => type switch
     {
         "maj" or "M" => [0, 4, 7],
         "maj7" or "M7" => [0, 4, 7, 11],

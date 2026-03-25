@@ -14,6 +14,7 @@ public static class NotesExtension
 
 public enum Note
 {
+    None = -1,
     C = 0, 
     BSharp = 0,       
     CSharp = 1, 
