@@ -14,10 +14,10 @@
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="NoChrome"
         Background="#121212"
-        Width="900"
-        Height="600"
-        MinWidth="600"
-        MinHeight="500"
+        Width="1280"
+        Height="720"
+        MinWidth="1280"
+        MinHeight="720"
         WindowStartupLocation="CenterScreen">
     
     <Window.Styles>
