@@ -37,12 +37,14 @@
         <local:TitleBar Name="TitleBar" 
                         Grid.Row="0"/>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1"
+              ColumnSpacing="10"
+              Margin="20, 20, 20, 20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"
                                   MinWidth="150"
                                   MaxWidth="500"/>  
-                <ColumnDefinition Width="2"/>    
+                <ColumnDefinition Width="0"/>    
                 <ColumnDefinition Width="*"/>    
             </Grid.ColumnDefinitions>
 
@@ -56,8 +58,8 @@
                           ResizeDirection="Columns"
                           ResizeBehavior="PreviousAndNext"
                           ShowsPreview="False"
-                          Width="2"
-                          HorizontalAlignment="Stretch"/>
+                          Width="0"
+                          HorizontalAlignment="Center"/>
 
             <!-- Right side -->
             <ContentControl Grid.Column="2"
