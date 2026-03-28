@@ -5,10 +5,10 @@ namespace GuitarNote.Models;
 
 public class Chord
 {
-    public Note Note { get; private set; }
-    public Note? SlashBass {get; private set; }
-    public string Type { get; private set; }
-    public int[] Intervals { get; private set; }
+    public Note Note { get; }
+    public Note? SlashBass {get; }
+    public string Type { get; }
+    public int[] Intervals { get; }
 
     public Chord(Note note, string type, Note? slashBass = Note.None)
     {
@@ -49,4 +49,22 @@ public class Chord
         "aug7" or "+7" => [0, 4, 8, 11],
         _ => []
     };
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Note, Type, SlashBass);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is not Chord other)
+            return false;
+        
+        return Note == other.Note 
+               && Type == other.Type 
+               && SlashBass == other.SlashBass;
+    }
+    
+    public static bool operator ==(Chord left, Chord right) => Equals(left, right);
+    public static bool operator !=(Chord left, Chord right) => !Equals(left, right);
 }

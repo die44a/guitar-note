@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using GuitarNote.Services;
 
 namespace GuitarNote.Models;
 
@@ -8,7 +9,7 @@ public class ChordLine
 {
     public string OriginalText { get; }
     public string Text { get; private set; }
-    public List<(int position, string chord)> Chords { get; private set; }
+    public List<(int position, Chord chord)> Chords { get; private set; }
 
     public ChordLine(string input)
     {
@@ -16,10 +17,10 @@ public class ChordLine
         (Text, Chords) = Parse(input);
     }
 
-    private (string, List<(int, string)>) Parse(string input)
+    private (string, List<(int, Chord)>) Parse(string input)
     {
         var sb = new StringBuilder();
-        var chords = new List<(int, string)>();
+        var chords = new List<(int, Chord)>();
         var index = 0;
 
         while (index < input.Length)
@@ -41,16 +42,16 @@ public class ChordLine
         return (sb.ToString(), chords); 
     }
 
-    private (int index, string chord) ExtractChord(string input, int startIndex)
+    private (int index, Chord chord) ExtractChord(string input, int startIndex)
     {
         var end = input.IndexOf(']', startIndex);
         if (end == -1)
             throw new InvalidChordLineException("Missing closing bracket for chord.");
                 
-        var chord = input.Substring(startIndex + 1, end - startIndex - 1).Trim();
-        return string.IsNullOrEmpty(chord) 
+        var chord = input.AsSpan(startIndex + 1, end - startIndex - 1).Trim();
+        return chord.IsEmpty 
             ? throw new InvalidChordLineException("Chord cannot be empty.") 
-            : (end + 1, chord);
+            : (end + 1, ChordParser.ParseChord(chord.ToString()));
     }
 }
 

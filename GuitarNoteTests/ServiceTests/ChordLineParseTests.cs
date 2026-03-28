@@ -1,11 +1,12 @@
 using GuitarNote.Models;
+using GuitarNote.Services;
 
 namespace GuitarNoteTests.ServiceTests;
 
 [TestFixture]
 public class ChordLineParseTests
 {
-    private void CheckCorrectParsing(string input, string expectedText, List<(int, string)> expectedChords)
+    private void CheckCorrectParsing(string input, string expectedText, List<(int, Chord)> expectedChords)
     {
         var chordLine = new ChordLine(input);
         using (Assert.EnterMultipleScope())
@@ -37,7 +38,7 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("[Am]", 
             "",
-            [(0, "Am")]);
+            [(0, ChordParser.ParseChord("Am"))]);
     }
     
     [Test]
@@ -45,7 +46,9 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("[Am][Bm][F#m]", 
             "",
-            [(0, "Am"), (0, "Bm"), (0, "F#m")]);
+            [(0, ChordParser.ParseChord("Am")), 
+                    (0, ChordParser.ParseChord("Bm")), 
+                    (0, ChordParser.ParseChord("F#m"))]);
     }
 
     [Test]
@@ -61,7 +64,7 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("[Am] text", 
             " text",
-            [(0, "Am")]);
+            [(0, ChordParser.ParseChord("Am"))]);
     }
     
     [Test]
@@ -69,7 +72,7 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("t[Am]ext", 
             "text",
-            [(1, "Am")]);
+            [(1, ChordParser.ParseChord("Am"))]);
     }
     
     [Test]
@@ -77,7 +80,7 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("tex[Am]t", 
             "text",
-            [(3, "Am")]);
+            [(3, ChordParser.ParseChord("Am"))]);
     }
     
     [Test]
@@ -85,7 +88,8 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("[Am] first [Bm] second", 
             " first  second",
-            [(0, "Am"), (7, "Bm")]);
+            [(0, ChordParser.ParseChord("Am")), 
+                    (7, ChordParser.ParseChord("Bm"))]);
     }
     
     [Test]
@@ -93,7 +97,8 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("[Am]first [Bm]second", 
             "first second", 
-            [ (0, "Am"), (6, "Bm") ]);
+            [ (0, ChordParser.ParseChord("Am")), 
+                    (6, ChordParser.ParseChord("Bm")) ]);
     }
     
     [Test]
@@ -101,7 +106,8 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("[Am]first[Bm]second", 
             "firstsecond", 
-            [ (0, "Am"), (5, "Bm") ]);
+            [ (0, ChordParser.ParseChord("Am")), 
+                (5, ChordParser.ParseChord("Bm")) ]);
     }
 
     [Test]
@@ -109,7 +115,8 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("[F#m] Hello [G7] World", 
             " Hello  World",
-            [ (0, "F#m"), (7, "G7") ]);
+            [ (0, ChordParser.ParseChord("F#m")), 
+                    (7, ChordParser.ParseChord("G7")) ]);
     }
     
     [Test]
@@ -117,7 +124,8 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("   [Am]  first   [Bm]   second   ",
             "     first      second   ",
-            [ (3, "Am"), (13, "Bm") ]);
+            [ (3, ChordParser.ParseChord("Am")), 
+                    (13, ChordParser.ParseChord("Bm")) ]);
     }
     
     [Test]
@@ -125,7 +133,8 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("[C][G]Text",
             "Text",
-            [ (0, "C"), (0, "G") ]);
+            [ (0, ChordParser.ParseChord("C")), 
+                    (0, ChordParser.ParseChord("G")) ]);
     }
     
     [Test]
@@ -133,7 +142,7 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("   [C]Hello", 
             "   Hello",
-            [(3, "C")]);
+            [(3, ChordParser.ParseChord("C"))]);
     }
 
     [Test]
@@ -141,7 +150,9 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("[D] [G] [A]Test",
             "  Test",
-            [(0, "D"), (1, "G"), (2, "A")]);
+            [(0, ChordParser.ParseChord("D")), 
+                        (1, ChordParser.ParseChord("G")), 
+                        (2, ChordParser.ParseChord("A"))]);
     }
 
     [Test]
@@ -149,7 +160,7 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("Text [Em]   ",
             "Text    ",
-            [(5, "Em")]);
+            [(5, ChordParser.ParseChord("Em"))]);
     }
 
     [Test]
@@ -157,7 +168,7 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("Hello   [C]  world",
             "Hello     world",
-            [(8, "C")]); 
+            [(8, ChordParser.ParseChord("C"))]); 
     }
     
     [Test]
@@ -165,7 +176,7 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("Hello[C]",
             "Hello",
-            [(5, "C")]); 
+            [(5, ChordParser.ParseChord("C"))]); 
     }
     
     [Test]
@@ -173,7 +184,8 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("[C] [G] Text",
             "  Text",
-            [ (0, "C"), (1, "G") ]);
+            [ (0, ChordParser.ParseChord("C")), 
+                        (1, ChordParser.ParseChord("G")) ]);
     }
     
     [Test]
@@ -181,7 +193,9 @@ public class ChordLineParseTests
     {
         CheckCorrectParsing("[Am] text [C] [G] Text",
             " text   Text",
-            [ (0, "Am"), (6, "C"), (7, "G") ]);
+            [ (0, ChordParser.ParseChord("Am")), 
+                        (6, ChordParser.ParseChord("C")), 
+                        (7, ChordParser.ParseChord("G")) ]);
     }
     
     [Test]
